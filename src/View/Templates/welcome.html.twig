@@ -1,0 +1,160 @@
+{% set baseurl = 'http://localhost/employee/src/' %}
+<link rel="stylesheet"
+href="{{ baseurl }}View/Bootstrap/bootstrap.min.css">
+<link rel="stylesheet"
+href="{{ baseurl }}View/Css/jquery.dataTables.min.css">
+<div class="container my-5">
+
+    <button id="adduser">Add New Employee</button>
+    <div id="editmsg"></div>
+    <div id="deletemsg"></div>
+<table id="emptable" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">EmpId</th>
+        <th scope="col">RegNo</th>
+        <th scope="col">Name</th>
+        <th scope="col">Designation</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone No</th>
+        <th scope="col">Date of Birth</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for emp in empall %}  
+      <tr id="row{{ emp.EmpId }}">
+        <th scope="row" id="empid{{ emp.EmpId }}">{{ emp.EmpId }}</th>
+        <td id="regno{{ emp.EmpId }}">{{ emp.RegNo }}</td>
+        <td id="empname{{ emp.EmpId }}">{{ emp.Emp_name }}</td>
+        <td id="empdeg{{ emp.EmpId }}">{{ emp.Designation }}</td>
+        <td id="empemail{{ emp.EmpId }}"> {{ emp.Email }}</td>
+        <td id="empphone{{ emp.EmpId }}">{{ emp.Phone_no }}</td>
+        <td id="empdate{{ emp.EmpId }}">{{ emp.Birth_date }}</td>
+        <td id="edit{{ emp.EmpId }}"><button onclick="myedit('{{emp.EmpId}}')">Edit</button></td>
+        <td id="delete{{ emp.EmpId }}"><button onclick="mydelete('{{emp.EmpId}}')">Delete</button></td>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div id="editdiv">
+	<h4>Edit Details</h4>
+	Regno<br><input type="text" id="regno" required /><br>
+	Name<br><input type="text" id="empname" required /><br>
+	Designation<br><input type="text" id="empdeg" required /><br>
+	Email<br><input type="text" id="empemail" required /><br>
+  Phone no<br><input type="text" id="empphone" required /><br>
+  Date of birth<br><input type="text" id="empdate" required /><br>
+	<br>
+	<button  class ="btn2" id="editbtn">submit</button>
+	<button  class ="btn2" id="editclosebtn">close</button>
+</div>
+<div id="adduserdetail">
+  <div id="userdiv">
+  <button id="newformclose">X</button>
+      <fieldset>
+              <legend><u>New Employee Details</u></legend>
+              Registration number<br>
+              <input type="text" id="reg1" />
+              <p id="regno1err"></p>
+              Name<br>
+              <input type="text" id="name1"/><br>
+              Designation<br>
+              <input type="text" id="deg1" /><br>
+              Email<br>
+              <input type="email" id="email1"  />
+              Phone_Number<br>
+              <input type="text" id="phone1"  />
+              Date_of_birth<br>
+              <input type="date" id="date1"  />
+              <button id="empadd">Add</button>     
+      </fieldset>   
+    </div>  
+</div>
+<style>
+   button
+   {
+    background-color: aqua;
+    border-radius: 20px;
+   }
+   button:hover{
+    background-color: chartreuse;
+    color: white;
+   }
+   #userdiv{
+    margin-left: 80px ;
+   }
+#editdiv
+{
+	  position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgb(117, 214, 244);
+    border-radius: 5px;
+    background-color: #7bdaf5;
+    width: 300px;
+    height: 430px;
+    padding-left:35px;
+    display:none;   
+}
+#adduserdetail
+{   
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgb(60, 158, 244);
+    border-radius: 5px;
+    background-color: #1a87ca;
+    width: 400px;
+    height: 400px;
+}
+#adduserdetail form fieldset
+{
+    width: 250px;
+}
+
+#newaddform
+{
+    margin-left: 80px;
+}
+#newaddform input{
+    height: 25px;
+}
+#newformclose{
+    float: right;
+    background-color: red;
+}
+#newemailerror
+{
+    color: red;
+}
+#adduser,.btn2
+{
+    background-color:aqua;
+}
+#adduser:hover,.btn2:hover{
+    background-color: chartreuse;
+}
+</style>
+<script src="{{ baseurl }}View/Js/jquery.dataTables.min.js"></script>
+<script src="{{ baseurl }}View/Js/welcome.js"></script>
+<script>
+  $('#adduser').click(function()
+{
+    $('#adduserdetail').show();
+});
+  $('#editclosebtn').click(function()
+  {
+    $('#editdiv').hide();
+    
+  });
+  $('#newformclose').click(function(){
+    $('#adduserdetail').hide();
+  });
+ 
+  </script>

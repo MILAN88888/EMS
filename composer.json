@@ -1,0 +1,21 @@
+{
+    "name": "employee/employee",
+    "description": "\"This project keep record of employee\"",
+    "autoload": {
+        "psr-4": {
+            "Employee\\Employee\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Milan Chaudhary",
+            "email": "chaudharymilan996@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "3.3"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.8"
+    }
+}
