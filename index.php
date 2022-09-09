@@ -12,6 +12,9 @@
  */
 require 'vendor/autoload.php';
 $homeController = new Employee\Employee\Controller\Home();
+if (isset($_SESSION['userName'])) {
+    header("location:src/View/welcome.php");
+}
 if (!isset($_SESSION['userName'])) {
     $session = null;
     $homeController->getHome($session);

@@ -6,7 +6,7 @@
   <button id="adduser">Add New Employee</button>
   <div id="editmsg"></div>
   <div id="deletemsg"></div>
-  <table id="emptable" class="table table-striped">
+  <table id="emptable" class="table table-striped display">
     <thead>
       <tr>
         <th scope="col">EmpId</th>
@@ -37,6 +37,18 @@
         {% endfor %}
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <th>EmpId</th>
+        <th>RegNo</th>
+        <th>Name</th>
+        <th>Designation</th>
+        <th>Email</th>
+        <th>Phone No</th>
+        <th>Date of Birth</th>
+        <th>Hobby</th>
+      </tr>
+    </tfoot>
   </table>
 </div>
 <div id="editdiv">
@@ -102,15 +114,15 @@
         Date_of_birth<br>
         <input type="date" id="date1" name="empdate" />
         <br>Hobbies<br>
-        <input type="checkbox"  value="batminton" name="hobby">
+        <input type="checkbox" value="batminton" name="hobby">
         <label for="scales">Batmiton</label>
-        <input type="checkbox"  value="football" name="hobby">
+        <input type="checkbox" value="football" name="hobby">
         <label for="scales">Football</label>
-        <input type="checkbox"  value="cricket" name="hobby">
+        <input type="checkbox" value="cricket" name="hobby">
         <label for="scales">Cricket</label>
-        <input type="checkbox"  value="chess" name="hobby">
+        <input type="checkbox" value="chess" name="hobby">
         <label for="scales">Chess</label>
-        <input type="checkbox"  value="volleyball" name="hobby">
+        <input type="checkbox" value="volleyball" name="hobby">
         <label for="scales">Volleyball</label>
         <br>
         <button type="submit" id="empadd">Add</button>
@@ -119,6 +131,12 @@
   </div>
 </div>
 <style>
+  tfoot input {
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
+  }
+
   button {
     background-color: aqua;
     border-radius: 20px;
