@@ -24,7 +24,7 @@ use Twig\Loader\FilesystemLoader;
  * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link     http://pear.php.net/package/PackageName
  */
-class DashboardController
+class Dashboard
 {
     private $_loader;
     private $_twig;
@@ -37,11 +37,11 @@ class DashboardController
      *
      * @param $dashboardModel is the object for user model.
      */
-    public function __construct($dashboardModel)
+    public function __construct($dashboardM)
     {
         $this->_loader = new FilesystemLoader(__DIR__.'/../View/Templates');
         $this->_twig = new Environment($this->_loader);
-        $this->dashboardModel = $dashboardModel;
+        $this->dashboardM = $dashboardM;
     }
 
 
@@ -53,17 +53,16 @@ class DashboardController
      *
      * @return void return nothing.
      */
-    public function loginController(string $userName,string $userPass)
+    public function getLogin(string $userName,string $userPass):void
     {   
-        // session_start();
-        $this->result = $this->dashboardModel->loginModel($userName, $userPass);
+        session_start();
+        $this->result = $this->dashboardM->getLogin($userName, $userPass);
         if ($this->result != false) {
             $arr = $this->result;
-            // $_SESSION['userName'] = $arr[0]['user_name']; 
+            $_SESSION['userName'] = $arr[0]['user_name']; 
             header('location:welcome.php');
         } else {
-            // $_SESSION['fail'] = 'failed';
-            header('location:../../index.php');
+            header('location:../../index.php?fail=failed');
         }
     }
     
@@ -72,9 +71,9 @@ class DashboardController
      * 
      * @return void list of employee
      */
-    public function dashboard()
+    public function getEmployee()
     {
-        $result = $this->dashboardModel->dashboard();
+        $result = $this->dashboardM->getEmployee();
         echo $this->_twig->render('welcome.html.twig', ['empall'=>$result]);
     }
     /**
@@ -90,11 +89,11 @@ class DashboardController
      * 
      * @return void return nothing.
      */
-    public function updateController(
+    public function getUpdate(
         $empId, $empRegNo, $empName, $empDeg,
         $empEmail, $empPhone, $empDate
     ) {
-        $result = $this->dashboardModel->updateModel(
+        $result = $this->dashboardM->getUpdate(
             $empId, $empRegNo, $empName, $empDeg,
             $empEmail, $empPhone, $empDate
         );
@@ -107,9 +106,9 @@ class DashboardController
        * 
        * @return void return true or false.
        */
-    public function deleteController($empId)
+    public function getDelete($empId)
     {
-        $result = $this->dashboardModel->deleteModel($empId);
+        $result = $this->dashboardM->getDelete($empId);
         echo $result;  
     }
     /**
@@ -124,10 +123,10 @@ class DashboardController
      * 
      * @return int last insert idex
      */
-    public function addnewController($regno, $name,
+    public function getAddNew($regno, $name,
         $deg, $email, $phone, $date1
     ): int {
-        $result = $this->dashboardModel->addnewModel(
+        $result = $this->dashboardM->getAddNew(
             $regno, $name,
             $deg, $email, $phone, $date1
         );

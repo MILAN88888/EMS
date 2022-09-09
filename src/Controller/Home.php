@@ -24,7 +24,7 @@ use Twig\Loader\FilesystemLoader;
  * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link     http://pear.php.net/package/PackageName
  */
-class HomeController
+class Home
 {
     private $_loader;
     private $_twig;
@@ -43,7 +43,7 @@ class HomeController
      * 
      * @return void return singini modal.
      */
-    public function home()
+    public function getHome():void
     {
         echo $this->_twig->render('index.html.twig');    
     }
@@ -52,7 +52,7 @@ class HomeController
      * 
      * @return void  sign twig file.
      */
-    public function signin()
+    public function getSignin():void
     {
         echo $this->_twig->render('signin.html.twig');
     }

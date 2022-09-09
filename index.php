@@ -11,18 +11,19 @@
  * @link     http://pear.php.net/package/PackageName
  */
 require 'vendor/autoload.php';
-$homeController = new Employee\Employee\Controller\HomeController();
+$homeController = new Employee\Employee\Controller\Home();
 if (!isset($_SESSION['userName'])) {
    
-    $homeController->home();
-    $homeController->signin();
+    $homeController->getHome();
+}
+if (isset($_GET['fail']) && $_GET['fail'] == 'failed') {
+    echo '<div id="msge"><span>Invalid credentials !!</span>
+    <button id="btn3">x</button></div>';     
+} 
+if (!isset($_SESSION['userName'])) {
+    $homeController->getSignin();
 }
 if (isset($_SESSION['userName'])) {
     header('location:src/view/welcome.php');
 }
-if (isset($_SESSION['fail']) && $_SESSION['fail'] == 'failed') {
-    echo '<div id="msge"><span>Invalid credentials !!</span>
-    <button id="btn3">x</button></div>';
-        unset($_SESSION['fail']);
-        session_destroy();
-} 
+

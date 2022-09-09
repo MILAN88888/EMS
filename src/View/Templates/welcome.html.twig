@@ -29,7 +29,7 @@ href="{{ baseurl }}View/Css/jquery.dataTables.min.css">
         <td id="regno{{ emp.EmpId }}">{{ emp.RegNo }}</td>
         <td id="empname{{ emp.EmpId }}">{{ emp.Emp_name }}</td>
         <td id="empdeg{{ emp.EmpId }}">{{ emp.Designation }}</td>
-        <td id="empemail{{ emp.EmpId }}"> {{ emp.Email }}</td>
+        <td id="empemail{{ emp.EmpId }}">{{ emp.Email }}</td>
         <td id="empphone{{ emp.EmpId }}">{{ emp.Phone_no }}</td>
         <td id="empdate{{ emp.EmpId }}">{{ emp.Birth_date }}</td>
         <td id="edit{{ emp.EmpId }}"><button onclick="myedit('{{emp.EmpId}}')">Edit</button></td>
@@ -41,36 +41,40 @@ href="{{ baseurl }}View/Css/jquery.dataTables.min.css">
 </div>
 <div id="editdiv">
 	<h4>Edit Details</h4>
-	Regno<br><input type="text" id="regno" required /><br>
-	Name<br><input type="text" id="empname" required /><br>
-	Designation<br><input type="text" id="empdeg" required /><br>
-	Email<br><input type="text" id="empemail" required /><br>
-  Phone no<br><input type="text" id="empphone" required /><br>
-  Date of birth<br><input type="text" id="empdate" required /><br>
+  <form id="emp_editform">
+	Regno<br><input type="text" id="regno" name="regno" /><br>
+	Name<br><input type="text" id="empname" name="empname"  /><br>
+	Designation<br><input type="text" id="empdeg" name="empdeg"  /><br>
+	Email<br><input type="text" id="empemail" name="empemail"  /><br>
+  Phone no<br><input type="text" id="empphone" name="empphone" /><br>
+  Date of birth<br><input type="text" id="empdate" name="empdate" /><br>
 	<br>
-	<button  class ="btn2" id="editbtn">submit</button>
+	<button type="submit" class ="btn2" id="editbtn">submit</button>
+</form>
 	<button  class ="btn2" id="editclosebtn">close</button>
 </div>
 <div id="adduserdetail">
   <div id="userdiv">
   <button id="newformclose">X</button>
+  <form id="emp_addform" method="post">
       <fieldset>
               <legend><u>New Employee Details</u></legend>
               Registration number<br>
-              <input type="text" id="reg1" />
+              <input type="text" id="reg1" name="regno"  />
               <p id="regno1err"></p>
               Name<br>
-              <input type="text" id="name1"/><br>
+              <input type="text" id="name1" name="empname"  /><br>
               Designation<br>
-              <input type="text" id="deg1" /><br>
+              <input type="text" id="deg1" name="empdeg"  /><br>
               Email<br>
-              <input type="email" id="email1"  />
+              <input type="email" id="email1" name="empemail"  />
               Phone_Number<br>
-              <input type="text" id="phone1"  />
+              <input type="text" id="phone1" name="empphone"  />
               Date_of_birth<br>
-              <input type="date" id="date1"  />
-              <button id="empadd">Add</button>     
-      </fieldset>   
+              <input type="date" id="date1" name="empdate"  />
+              <button type="submit" id="empadd">Add</button>     
+      </fieldset> 
+    </form> 
     </div>  
 </div>
 <style>
@@ -111,7 +115,7 @@ href="{{ baseurl }}View/Css/jquery.dataTables.min.css">
     border-radius: 5px;
     background-color: #1a87ca;
     width: 400px;
-    height: 400px;
+    height: 550px;
 }
 #adduserdetail form fieldset
 {
@@ -156,5 +160,7 @@ href="{{ baseurl }}View/Css/jquery.dataTables.min.css">
   $('#newformclose').click(function(){
     $('#adduserdetail').hide();
   });
+
+
  
   </script>

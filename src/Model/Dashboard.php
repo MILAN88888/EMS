@@ -21,7 +21,7 @@ namespace Employee\Employee\Model;
  * @license  http://www.php.net/license/3_01.txt  PHP License 3.01
  * @link     http://pear.php.net/package/PackageName
  */
-class DashboardModel
+class Dashboard
 {
     private $_conn;
 
@@ -43,7 +43,7 @@ class DashboardModel
      *
      * @return mixed return $result or false containts.
      */
-    public function loginModel(string $userName, string $userPass): mixed
+    public function getLogin(string $userName, string $userPass): mixed
     {
         $sql = "select * from `user_type` where user_name = ? and user_password = ?";
         $stmt = $this->_conn->prepare($sql);
@@ -66,7 +66,7 @@ class DashboardModel
      * 
      * @return array list of employee
      */
-    public function dashboard(): array
+    public function getEmployee(): array
     {  
         $sql = "select * from `employee`";
         $stmt = $this->_conn->prepare($sql);
@@ -95,7 +95,7 @@ class DashboardModel
       * 
       * @return bool return nothing.
       */
-    public function updateModel(int $empId, string $empRegNo,
+    public function getUpdate(int $empId, string $empRegNo,
      string $empName, string  $empDeg,
         string $empEmail, string $empPhone, string $empDate
     ):bool {
@@ -121,7 +121,7 @@ class DashboardModel
      * 
      * @return bool return true or false.
      */
-    public function deleteModel(int $empId): bool
+    public function getDelete(int $empId): bool
     {
         $sql = "delete from `employee` where EmpId= ?";
         $stmt = $this->_conn->prepare($sql);
@@ -146,7 +146,7 @@ class DashboardModel
      * 
      * @return int last insert idex
      */
-    public function addnewModel(string $regno, string $name,
+    public function getAddNew(string $regno, string $name,
      string $deg, string $email, string $phone, string $date1): int
     {
         $sql = 'INSERT INTO employee

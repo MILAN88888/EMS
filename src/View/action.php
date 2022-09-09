@@ -15,15 +15,15 @@ require '../../vendor/autoload.php';
 $db = new Employee\Employee\Config\Db();
 $conn = $db->getConnection();
 
-$dashboardModel = new Employee\Employee\Model\DashboardModel($conn);
-$dashboardController = new 
-Employee\Employee\Controller\DashboardController($dashboardModel);
+$dashboardM = new Employee\Employee\Model\Dashboard($conn);
+$dashboardC = new 
+Employee\Employee\Controller\Dashboard($dashboardM);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['login'])) {
         $userName = $_POST['userName'];
         $userPass = $_POST['userPass'];
-        $dashboardController->loginController($userName, $userPass);
+        $dashboardC->getLogin($userName, $userPass);
     }
 }
 
@@ -37,7 +37,7 @@ if (isset($_GET['type']) && $_GET['type'] == 'Update') {
             $empDeg = $_POST['empdeg'];
             $empPhone = $_POST['empphone'];
             $empDate = $_POST['empdate'];
-            $dashboardController->updateController(
+            $dashboardC->getUpdate(
                 $empId, $empRegNo, $empName, $empDeg,
                 $empEmail, $empPhone, $empDate
             );
@@ -48,7 +48,7 @@ if (isset($_GET['type']) && $_GET['type'] == 'Delete') {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
         $empId = $_POST['id'];
-        $dashboardController->deleteController($empId);    
+        $dashboardC->getDelete($empId);    
     
     }
     
@@ -61,7 +61,7 @@ if (isset($_GET['type']) && $_GET['type'] == 'add') {
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $date1 = $_POST['date1'];
-        $result = $dashboardController->addnewController(
+        $result = $dashboardC->getAddNew(
             $regno,
             $name, $deg, $email, $phone, $date1
         );

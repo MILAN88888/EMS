@@ -13,9 +13,9 @@
 require '../../vendor/autoload.php';
 $db = new \Employee\Employee\Config\Db();
 $conn = $db->getConnection();
-$dashboardModel = new \Employee\Employee\Model\DashboardModel($conn);
-$dashboardController = new
- Employee\Employee\Controller\DashboardController($dashboardModel);
-$homeController = new Employee\Employee\Controller\HomeController();
-$homeController->home();
-$dashboardController->dashboard();
+$dashboardM = new \Employee\Employee\Model\Dashboard($conn);
+$dashboardC = new
+ Employee\Employee\Controller\Dashboard($dashboardM);
+$homeController = new Employee\Employee\Controller\Home();
+$homeController->getHome();
+$dashboardC->getEmployee();
