@@ -41,13 +41,13 @@ class Home
     /**
      * Function to rendor of index.
      * 
-     * @param $session
+     * @param $session user session.
      * 
      * @return void return singini modal.
      */
     public function getHome($session):void
     {
-        echo $this->_twig->render('index.html.twig',['session'=>$session]);    
+        echo $this->_twig->render('index.html.twig', ['session'=>$session]);    
     }
     /**
      * Function to rendor of signin twig file.

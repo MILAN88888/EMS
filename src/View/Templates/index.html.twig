@@ -1,56 +1,58 @@
 {% set baseurl = 'http://localhost/employee/src/' %}
 <html>
-    <head>
-        <title>EMS</title>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet"
-         href="{{ baseurl }}View/Bootstrap/bootstrap.min.css">
-         <link rel="stylesheet"
-         href="{{ baseurl }}View/Css/index.css">
-        <script src="{{ baseurl }}View/Bootstrap/bootstrap.bundle.min.js">
-        </script>
-        <script src="{{ baseurl }}View/Js/jquery-3.6.1.min.js"></script>
 
-        </script>
-        <script src="{{ baseurl }}View/Js/jquery.validate.min.js"></script>
-    </head>
-    <body>
+<head>
+    <title>EMS</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ baseurl }}View/Bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ baseurl }}View/Css/index.css">
+    <script src="{{ baseurl }}View/Bootstrap/bootstrap.bundle.min.js">
+    </script>
+    <script src="{{ baseurl }}View/Js/jquery-3.6.1.min.js"></script>
+
+    </script>
+    <script src="{{ baseurl }}View/Js/jquery.validate.min.js"></script>
+</head>
+
+<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-success">
         <a class="navbar-brand" href="#" style="color:white">Employee Management System</a>
         {% if session != null %}
         <div id="log_div">
-        <a href="action.php?type=logout"><button id="logout">logout</button></a>
-        {% endif %}
-    </div>
+            <a href="action.php?type=logout"><button id="logout">logout</button></a>
+            {% endif %}
+        </div>
     </nav>
     <script src="{{ baseurl }}View/Js/index.js"></script>
-  <style>
-    body{
-        background-color: cadetblue;
-    }
-    .error
-    {
-        color: red;
-    }
-#logout
-{	
-    float:right;
-	margin-top: 8px;
-	background: none;
-    border: none;
-    padding: 0;
-    color:white;
-    cursor: pointer;
-    outline: inherit;	
-}
-#logout:hover{
-	background-color: rgb(206, 23, 78);
-	color: black;
-	text-decoration: underline;
-}
-#log_div{
-    margin-left: 74%;
-}
-  </style>
+    <style>
+        body {
+            background-color: cadetblue;
+        }
+
+        .error {
+            color: red;
+        }
+
+        #logout {
+            float: right;
+            margin-top: 8px;
+            background: none;
+            border: none;
+            padding: 0;
+            color: white;
+            cursor: pointer;
+            outline: inherit;
+        }
+
+        #logout:hover {
+            background-color: rgb(206, 23, 78);
+            color: black;
+            text-decoration: underline;
+        }
+
+        #log_div {
+            margin-left: 74%;
+        }
+    </style>

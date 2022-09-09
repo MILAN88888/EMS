@@ -29,13 +29,13 @@ class Dashboard
     private $_loader;
     private $_twig;
     public $res;
-    public $dashboardModel;
+    public $dashboardM;
     public $result;
 
     /**
      * Constructor for the User controller.
      *
-     * @param $dashboardModel is the object for user model.
+     * @param $dashboardM is the object for user model.
      */
     public function __construct($dashboardM)
     {
@@ -101,12 +101,13 @@ class Dashboard
      * @param $empEmail is email.
      * @param $empPhone is phone.
      * @param $empDate  is date of birth.
+     * @param $hobby    is  hobby of employee.
      * 
      * @return void return nothing.
      */
     public function getUpdate(
-       int $empId, string $empRegNo, string $empName, string $empDeg,
-       string  $empEmail, string $empPhone, string $empDate,  $hobby
+        int $empId, string $empRegNo, string $empName, string $empDeg,
+        string  $empEmail, string $empPhone, string $empDate,  $hobby
     ):void {
         $result = $this->dashboardM->getUpdate(
             $empId, $empRegNo, $empName, $empDeg,
@@ -135,11 +136,12 @@ class Dashboard
      * @param $email is email
      * @param $phone is phone number
      * @param $date1 is birth date
+     * @param $hobby is hobby of employee
      * 
      * @return int last insert idex
      */
     public function getAddNew(string $regno,string $name,
-    string $deg, string $email, string $phone, string $date1, string $hobby
+        string $deg, string $email, string $phone, string $date1, string $hobby
     ): int {
         $result = $this->dashboardM->getAddNew(
             $regno, $name,
