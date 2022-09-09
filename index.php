@@ -13,8 +13,8 @@
 require 'vendor/autoload.php';
 $homeController = new Employee\Employee\Controller\Home();
 if (!isset($_SESSION['userName'])) {
-   
-    $homeController->getHome();
+    $session = null;
+    $homeController->getHome($session);
 }
 if (isset($_GET['fail']) && $_GET['fail'] == 'failed') {
     echo '<div id="msge"><span>Invalid credentials !!</span>

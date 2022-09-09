@@ -18,7 +18,12 @@
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-success">
-        <a class="navbar-brand" href="#">Employee Management System</a>
+        <a class="navbar-brand" href="#" style="color:white">Employee Management System</a>
+        {% if session != null %}
+        <div id="log_div">
+        <a href="action.php?type=logout"><button id="logout">logout</button></a>
+        {% endif %}
+    </div>
     </nav>
     <script src="{{ baseurl }}View/Js/index.js"></script>
   <style>
@@ -29,4 +34,23 @@
     {
         color: red;
     }
+#logout
+{	
+    float:right;
+	margin-top: 8px;
+	background: none;
+    border: none;
+    padding: 0;
+    color:white;
+    cursor: pointer;
+    outline: inherit;	
+}
+#logout:hover{
+	background-color: rgb(206, 23, 78);
+	color: black;
+	text-decoration: underline;
+}
+#log_div{
+    margin-left: 74%;
+}
   </style>

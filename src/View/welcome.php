@@ -17,5 +17,9 @@ $dashboardM = new \Employee\Employee\Model\Dashboard($conn);
 $dashboardC = new
  Employee\Employee\Controller\Dashboard($dashboardM);
 $homeController = new Employee\Employee\Controller\Home();
-$homeController->getHome();
+session_start();
+if (!isset($_SESSION['userName'])) {
+    header("location:../../index.php");
+}
+$homeController->getHome($_SESSION['userName']);
 $dashboardC->getEmployee();

@@ -30,18 +30,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 if (isset($_GET['type']) && $_GET['type'] == 'Update') {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
        
-            $empId = $_POST['empid'];
-            $empRegNo = $_POST['regno'];
-            $empName = $_POST['empname'];
-            $empEmail = $_POST['empemail'];
-            $empDeg = $_POST['empdeg'];
-            $empPhone = $_POST['empphone'];
-            $empDate = $_POST['empdate'];
-            $hobby = $_POST['txthobby'];
-            $dashboardC->getUpdate(
-                $empId, $empRegNo, $empName, $empDeg,
-                $empEmail, $empPhone, $empDate, $hobby
-            );
+        $empId = $_POST['empid'];
+        $empRegNo = $_POST['regno'];
+        $empName = $_POST['empname'];
+        $empEmail = $_POST['empemail'];
+        $empDeg = $_POST['empdeg'];
+        $empPhone = $_POST['empphone'];
+        $empDate = $_POST['empdate'];
+        $hobby = $_POST['txthobby'];
+        $dashboardC->getUpdate(
+            $empId, $empRegNo, $empName, $empDeg,
+            $empEmail, $empPhone, $empDate, $hobby
+        );
         
     }
 }
@@ -72,5 +72,8 @@ if (isset($_GET['type']) && $_GET['type'] == 'add') {
         
     }
     
+}
+if (isset($_GET['type']) && $_GET['type'] == 'logout') {
+    $dashboardC->getLogout();
 }
 ?>

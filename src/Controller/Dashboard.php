@@ -59,10 +59,25 @@ class Dashboard
         $this->result = $this->dashboardM->getLogin($userName, $userPass);
         if ($this->result != false) {
             $arr = $this->result;
-            $_SESSION['userName'] = $arr[0]['user_name']; 
+            $_SESSION['userName'] = "admin"; 
             header('location:welcome.php');
         } else {
             header('location:../../index.php?fail=failed');
+        }
+    }
+
+    /**
+     * Function get logout
+     * 
+     * @return void return nothing
+     */
+    public function getLogout():void
+    {
+        session_start();
+        if (isset($_SESSION['userName'])) {
+            session_unset();
+            session_destroy();
+            header("location:../../index.php");
         }
     }
     
@@ -71,7 +86,7 @@ class Dashboard
      * 
      * @return void list of employee
      */
-    public function getEmployee()
+    public function getEmployee():void
     {
         $result = $this->dashboardM->getEmployee();
         echo $this->_twig->render('welcome.html.twig', ['empall'=>$result]);
@@ -90,9 +105,9 @@ class Dashboard
      * @return void return nothing.
      */
     public function getUpdate(
-        $empId, $empRegNo, $empName, $empDeg,
-        $empEmail, $empPhone, $empDate, $hobby
-    ) {
+       int $empId, string $empRegNo, string $empName, string $empDeg,
+       string  $empEmail, string $empPhone, string $empDate,  $hobby
+    ):void {
         $result = $this->dashboardM->getUpdate(
             $empId, $empRegNo, $empName, $empDeg,
             $empEmail, $empPhone, $empDate, $hobby
@@ -106,7 +121,7 @@ class Dashboard
        * 
        * @return void return true or false.
        */
-    public function getDelete($empId)
+    public function getDelete(int $empId):void
     {
         $result = $this->dashboardM->getDelete($empId);
         echo $result;  
@@ -123,8 +138,8 @@ class Dashboard
      * 
      * @return int last insert idex
      */
-    public function getAddNew($regno, $name,
-        $deg, $email, $phone, $date1, $hobby
+    public function getAddNew(string $regno,string $name,
+    string $deg, string $email, string $phone, string $date1, string $hobby
     ): int {
         $result = $this->dashboardM->getAddNew(
             $regno, $name,
