@@ -97,14 +97,14 @@ class Dashboard
       */
     public function getUpdate(int $empId, string $empRegNo,
      string $empName, string  $empDeg,
-        string $empEmail, string $empPhone, string $empDate
+        string $empEmail, string $empPhone, string $empDate, string $hobby
     ):bool {
         $sql = "UPDATE employee
-        SET  RegNo = ?, Emp_name = ?, Designation = ?, Email = ?, Phone_no = ?, Birth_date = ?
+        SET  RegNo = ?, Emp_name = ?, Designation = ?, Email = ?, Phone_no = ?, Birth_date = ?, hobby = ?
           WHERE EmpId = ?";
         $stmt = $this->_conn->prepare($sql);
         $stmt->bind_param(
-            "ssssssi", $empRegNo, $empName, $empDeg, $empEmail, $empPhone, $empDate, $empId
+            "sssssssi", $empRegNo, $empName, $empDeg, $empEmail, $empPhone, $empDate, $hobby, $empId
         );
         $res = $stmt->execute();
         if ($res) {   
@@ -147,15 +147,15 @@ class Dashboard
      * @return int last insert idex
      */
     public function getAddNew(string $regno, string $name,
-     string $deg, string $email, string $phone, string $date1): int
+     string $deg, string $email, string $phone, string $date1, string $hobby): int
     {
         $sql = 'INSERT INTO employee
-         (`RegNo`,Emp_name,`Designation`,Email,`Phone_no`,Birth_date)
-         values (?, ?, ?, ?, ?,?)';
+         (`RegNo`,Emp_name,`Designation`,Email,`Phone_no`,Birth_date,hobby)
+         values (?, ?, ?, ?, ?,?,?)';
         $stmt = $this->_conn->prepare($sql);
         $stmt->bind_param(
-            "ssssss",
-            $regno, $name, $deg, $email, $phone, $date1
+            "sssssss",
+            $regno, $name, $deg, $email, $phone, $date1, $hobby
         );
         $stmt->execute();
         // $res =$stmt->insert_id;

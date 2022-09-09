@@ -37,9 +37,10 @@ if (isset($_GET['type']) && $_GET['type'] == 'Update') {
             $empDeg = $_POST['empdeg'];
             $empPhone = $_POST['empphone'];
             $empDate = $_POST['empdate'];
+            $hobby = $_POST['txthobby'];
             $dashboardC->getUpdate(
                 $empId, $empRegNo, $empName, $empDeg,
-                $empEmail, $empPhone, $empDate
+                $empEmail, $empPhone, $empDate, $hobby
             );
         
     }
@@ -61,9 +62,10 @@ if (isset($_GET['type']) && $_GET['type'] == 'add') {
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $date1 = $_POST['date1'];
+        $hobby = $_POST['txthobby'];
         $result = $dashboardC->getAddNew(
             $regno,
-            $name, $deg, $email, $phone, $date1
+            $name, $deg, $email, $phone, $date1, $hobby
         );
         print_r($result); 
         die();   

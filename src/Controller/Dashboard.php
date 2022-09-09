@@ -91,11 +91,11 @@ class Dashboard
      */
     public function getUpdate(
         $empId, $empRegNo, $empName, $empDeg,
-        $empEmail, $empPhone, $empDate
+        $empEmail, $empPhone, $empDate, $hobby
     ) {
         $result = $this->dashboardM->getUpdate(
             $empId, $empRegNo, $empName, $empDeg,
-            $empEmail, $empPhone, $empDate
+            $empEmail, $empPhone, $empDate, $hobby
         );
         echo $result;
     }
@@ -124,11 +124,11 @@ class Dashboard
      * @return int last insert idex
      */
     public function getAddNew($regno, $name,
-        $deg, $email, $phone, $date1
+        $deg, $email, $phone, $date1, $hobby
     ): int {
         $result = $this->dashboardM->getAddNew(
             $regno, $name,
-            $deg, $email, $phone, $date1
+            $deg, $email, $phone, $date1, $hobby
         );
         return $result;
     }

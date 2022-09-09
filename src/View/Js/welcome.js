@@ -50,6 +50,9 @@ jQuery(document).ready(function() {
 			},
 			empdate:{
 				required:true, 
+			},
+			hobby:{
+				required:true,
 			}
 		},
 			messages:{
@@ -75,6 +78,9 @@ jQuery(document).ready(function() {
 				},
 				empdate:{
 					required:"enter valid date", 
+				},
+				hobby:{
+					required:"please check out atleast one",
 				}
 			}
 	});
@@ -87,6 +93,7 @@ function myedit(str)
     var empemail = $('#empemail'+str).text();
     var empphone = $('#empphone'+str).text();
     var empdate = $('#empdate'+str).text();
+	var emphobby = $('#emphobby'+str).text();
 	
 	$('#regno').val(regno);
     $('#empname').val(empname)
@@ -94,6 +101,21 @@ function myedit(str)
 	$('#empemail').val(empemail);
     $('#empphone').val(empphone);
     $('#empdate').val(empdate);
+	const hobby =emphobby.split(",");
+	jQuery.each( hobby, function( i, val ) {
+		if(val.trim() == 'batminton') {
+			$('#batminton').prop("checked", true);
+		} else if(val.trim() == 'football'){
+			$('#football').prop("checked", true);
+		} else if(val.trim() == 'cricket'){
+			$('#cricket').prop("checked", true);
+		} else if(val.trim() == 'chess'){
+			$('#chess').prop("checked", true);
+		} else if(val.trim() == 'volleyball'){
+			$('#volleyball').prop("checked", true);
+		}
+	});
+
 	$('#editdiv').show();
 	$('#emp_editform').on('submit',function(e)
 	{
@@ -104,13 +126,18 @@ function myedit(str)
 		var newempemail =$('#empemail').val();
         var newempphone =$('#empphone').val();
         var newempdate =$('#empdate').val();
+		var hobby =[];
+		$.each($("input[name='hobby']:checked"), function(){
+		 hobby.push(($(this).val()));
+		 });
+		 var txthobby = hobby.join(", ");
 		console.log(newregno);
 		if($('#emp_editform').valid())
 		{
 		$.ajax({
 			url:'action.php?type=Update',
 			type:'post',
-			data: 'empid='+str+'&regno='+newregno+'&empname='+newempname+'&empdeg='+newempdeg+'&empemail='+newempemail+'&empphone='+newempphone+'&empdate='+newempdate,
+			data: 'empid='+str+'&regno='+newregno+'&empname='+newempname+'&empdeg='+newempdeg+'&empemail='+newempemail+'&empphone='+newempphone+'&empdate='+newempdate+'&txthobby='+txthobby,
 			success: function(res)
 			{
 				if(res == true){
@@ -120,6 +147,7 @@ function myedit(str)
                     $('#empemail'+str).text(newempemail);
                     $('#empphone'+str).text(newempphone);
                     $('#empdate'+str).text(newempdate);
+					$('#emphobby'+str).text(txthobby);
 					$('#editdiv').hide();
 					$('#editmsg').html('edited successfully');
 					}
@@ -158,6 +186,9 @@ jQuery(document).ready(function() {
 			},
 			empdate:{
 				required:true, 
+			},
+			hobby:{
+				required:true,
 			}
 		},
 			messages:{
@@ -182,15 +213,19 @@ jQuery(document).ready(function() {
 				},
 				empdate:{
 					required:"enter valid date", 
+				},
+				hobby:{
+					required:"please check out atleast one",
 				}
-			}
+			},
+			
 	});
 	});
 
 	$('#emp_addform').on('submit',newadd);
 	function newadd(e)
 	{	
-		e.preventDefault(); //prevent the default action
+		e.preventDefault(); 
 		if($('#emp_addform').valid())
 		{
 	   	   var regno = $('#reg1').val();
@@ -199,13 +234,18 @@ jQuery(document).ready(function() {
 		   var email = $('#email1').val();
 		   var phone = $('#phone1').val();
 		   var date1 = $('#date1').val();
-		   $.ajax({
+		   var hobby =[];
+		   $.each($("input[name='hobby']:checked"), function(){
+			hobby.push(($(this).val()));
+			});
+			var txthobby = hobby.join(", ");
+			$.ajax({
 			   url:'action.php?type=add',
 			   type: 'post',
-			   data:'regno='+regno+'&name='+name+'&deg='+deg+'&email='+email+'&phone='+phone+'&date1='+date1,
+			   data:'regno='+regno+'&name='+name+'&deg='+deg+'&email='+email+'&phone='+phone+'&date1='+date1+'&txthobby='+txthobby,
 			   success:function(res)
 			   {
-				   $('#emptable').append('<tr id="row'+res+'"><th scope="row" id="empid'+res+'">'+res+'</th><td id="regno'+res+'">'+regno+'</td><td id="empname'+res+'">'+name+'</td><td id="empdeg'+res+'">'+deg+'</td><td id="empemail'+res+'">'+email+'</td><td id="empphone'+res+'">'+phone+'</td><td id="empdate'+res+'">'+date1+'</td><td id="edit'+res+'"><button onclick="myedit('+res+')">Edit</button></td><td id="delete'+res+'"><button onclick="mydelete('+res+')">Delete</button></td></tr>');
+				   $('#emptable').append('<tr id="row'+res+'"><th scope="row" id="empid'+res+'">'+res+'</th><td id="regno'+res+'">'+regno+'</td><td id="empname'+res+'">'+name+'</td><td id="empdeg'+res+'">'+deg+'</td><td id="empemail'+res+'">'+email+'</td><td id="empphone'+res+'">'+phone+'</td><td id="empdate'+res+'">'+date1+'</td><td id="emphobby'+res+'">'+txthobby+'</td><td id="edit'+res+'"><button onclick="myedit('+res+')">Edit</button></td><td id="delete'+res+'"><button onclick="mydelete('+res+')">Delete</button></td></tr>');
 				   $('#editmsg').html('added successfully');
 				   $('#adduserdetail').hide();
 			   }
