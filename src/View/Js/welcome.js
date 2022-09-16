@@ -34,7 +34,7 @@ function mydelete(str) {
 				success: function (res) {
 					if (res) {
 						$('#row' + str).hide();
-						$('#editmsg').html('Deleted successfully');
+						$('#editmsg').html('<div class="msge"><span>Delete Successfully</span></div>');
 					}
 					else {
 						console.log('failed');
@@ -164,7 +164,8 @@ function myedit(str) {
 						$('#empdate' + str).text(newempdate);
 						$('#emphobby' + str).text(txthobby);
 						$('#editdiv').hide();
-						$('#editmsg').html('edited successfully');
+						$('#editmsg').html('<div class="msge"><span>Edit Successfully</span></div>');
+						$('#emp_editform')[0].reset();
 					}
 					else {
 						console.log('fail');
@@ -257,7 +258,7 @@ function newadd(e) {
 			data: 'regno=' + regno + '&name=' + name + '&deg=' + deg + '&email=' + email + '&phone=' + phone + '&date1=' + date1 + '&txthobby=' + txthobby,
 			success: function (res) {
 				$('#emptable').append('<tr id="row' + res + '"><th scope="row" id="empid' + res + '">' + res + '</th><td id="regno' + res + '">' + regno + '</td><td id="empname' + res + '">' + name + '</td><td id="empdeg' + res + '">' + deg + '</td><td id="empemail' + res + '">' + email + '</td><td id="empphone' + res + '">' + phone + '</td><td id="empdate' + res + '">' + date1 + '</td><td id="emphobby' + res + '">' + txthobby + '</td><td id="edit' + res + '"><button onclick="myedit(' + res + ')">Edit</button></td><td id="delete' + res + '"><button onclick="mydelete(' + res + ')">Delete</button></td></tr>');
-				$('#editmsg').html('added successfully');
+				$('#editmsg').html('<div class="msge"><span>Add Successfully</span></div>');
 				$('#adduserdetail').hide();
 			}
 		});

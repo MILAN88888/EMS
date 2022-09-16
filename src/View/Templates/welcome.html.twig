@@ -5,7 +5,6 @@
 
   <button id="adduser">Add New Employee</button>
   <div id="editmsg"></div>
-  <div id="deletemsg"></div>
   <table id="emptable" class="table table-striped display">
     <thead>
       <tr>
@@ -210,6 +209,14 @@
   .btn2:hover {
     background-color: chartreuse;
   }
+  #msge
+  {
+      display: inline;
+      color: rgb(11, 176, 71);
+  }
+  #msge span{
+      font-size: 20px;
+  }
 </style>
 <script src="{{ baseurl }}View/Js/jquery.dataTables.min.js"></script>
 <script src="{{ baseurl }}View/Js/welcome.js"></script>
@@ -219,12 +226,11 @@
   });
   $('#editclosebtn').click(function () {
     $('#editdiv').hide();
+    $('#emp_editform')[0].reset();
 
   });
   $('#newformclose').click(function () {
     $('#adduserdetail').hide();
   });
-
-
-
+ 
 </script>
